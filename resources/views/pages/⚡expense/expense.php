@@ -40,4 +40,9 @@ new class extends Component
             $this->sortDir = 'asc';
         }
     }
+
+    public function delete(Expense $expense){
+        $expense->delete();
+        
+    }
 };

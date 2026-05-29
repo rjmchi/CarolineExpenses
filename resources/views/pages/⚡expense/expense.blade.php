@@ -30,6 +30,7 @@
         <flux:table.column sortable :sorted="$sortBy==='category_id'" direction="$sortDir" wire:click="sort('category_id')">Category</flux:table.column>
         <flux:table.column sortable :sorted="$sortBy==='title'" direction="$sortDir" wire:click="sort('title')">Title</flux:table.column>
         <flux:table.column sortable :sorted="$sortBy==='amount'" direction="$sortDir" wire:click="sort('amount')">Amount</flux:table.column>
+        <flux:table.column />
     </flux:table.columns>
 
     <flux:table.rows>
@@ -39,6 +40,7 @@
             <flux:table.cell>{{$expense->category->name}}</flux:table.cell>
             <flux:table.cell>{{$expense->title}}</flux:table.cell>
             <flux:table.cell variant="strong">{{ '$' . number_format($expense->amount, 2);}}</flux:table.cell>
+            <flux:table.cell ><flux:button variant="danger" icon="trash" size="sm"  wire:click='delete({{ $expense->id }})'/></flux:table.cell>
         </flux:table.row>
 
     @endforeach
