@@ -18,8 +18,14 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'name' => 'Robert',
-            'email' => 'robert@test.com',
+            'email' => 'robert@rjmchicago.com',
             'password'=>'kether1330',
+        ]);
+
+        User::factory()->create([
+            'name' => 'Howard',
+            'email' => 'howard@skolnik.me',
+            'password'=>'13=Thirteen',
         ]);
 
         Category::create(['name'=>'Medical']);
