@@ -2,10 +2,10 @@
 <div>
 
     <div>
-        <form wire:submit="addExpense" method="POST" class="border border-teal-600 p-3 rounded shadow">
+        <form wire:submit="addExpense" method="POST" class="border border-teal-600 p-3 rounded shadow ">
             <p class="mb-2">New Expense</p>
-            <div class="flex  gap-3 ">
-                <div class="grid grid-cols-4 gap-2 w-full ">
+            <div class="flex gap-3 ">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 w-full ">
                     <flux:input type="date" wire:model='date'/>
                     <flux:select wire:model="category_id" placeholder="Choose category...">
                         @foreach ($categories as $category)
