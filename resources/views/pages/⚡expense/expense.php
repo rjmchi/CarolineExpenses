@@ -18,8 +18,11 @@ new class extends Component
     #[Validate('required')]
     public int $category_id=1;
 
+    public $sortDir='desc';
+    public $sortBy='date';
+
     public function with() {
-        return ['expenses'=>Expense::orderBy('date', 'desc')->get(), 'total'=> Expense::sum('amount'), 'categories'=>Category::all()];
+        return ['expenses'=>Expense::orderBy($this->sortBy, $this->sortDir)->get(), 'total'=> Expense::sum('amount'), 'categories'=>Category::all()];
     }
 
     public function addExpense() {
@@ -27,5 +30,14 @@ new class extends Component
         $validated = $this->validate();
         Expense::create($validated);
         $this->reset();
+    }
+
+    public function sort($field) {
+        if ($this->sortBy === $field){
+            $this->sortDir = $this->sortDir === 'asc' ? 'desc' : 'asc';
+        } else {
+            $this->sortBy = $field;
+            $this->sortDir = 'asc';
+        }
     }
 };

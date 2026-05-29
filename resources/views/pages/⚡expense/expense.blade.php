@@ -26,10 +26,10 @@
 
     <flux:table>
     <flux:table.columns>
-        <flux:table.column sortable sorted direction="desc">Date</flux:table.column>
-        <flux:table.column sortable sorted direction="desc">Category</flux:table.column>
-        <flux:table.column sortable sorted direction="desc">Title</flux:table.column>
-        <flux:table.column sortable sorted direction="desc">Amount</flux:table.column>
+        <flux:table.column sortable :sorted="$sortBy==='date'" direction="$sortDir" wire:click="sort('date')">Date</flux:table.column>
+        <flux:table.column sortable :sorted="$sortBy==='category_id'" direction="$sortDir" wire:click="sort('category_id')">Category</flux:table.column>
+        <flux:table.column sortable :sorted="$sortBy==='title'" direction="$sortDir" wire:click="sort('title')">Title</flux:table.column>
+        <flux:table.column sortable :sorted="$sortBy==='amount'" direction="$sortDir" wire:click="sort('amount')">Amount</flux:table.column>
     </flux:table.columns>
 
     <flux:table.rows>
@@ -43,7 +43,7 @@
 
     @endforeach
 
-            <flux:table.row>
+        <flux:table.row>
             <flux:table.cell>Total:</flux:table.cell>
             <flux:table.cell></flux:table.cell>
             <flux:table.cell></flux:table.cell>
