@@ -1,7 +1,7 @@
 
 <div>
-
-    <div>
+    <flux:input wire:model.live='search' icon='magnifying-glass' placeholder="Search..."/>
+    <div class="mt-2">
         <form wire:submit="addExpense" method="POST" class="border border-teal-600 p-3 rounded shadow ">
             <p class="mb-2">New Expense</p>
             <div class="flex gap-3 ">

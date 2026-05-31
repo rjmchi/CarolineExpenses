@@ -18,11 +18,17 @@ new class extends Component
     #[Validate('required')]
     public int $category_id=1;
 
+    public $search = '';
+
     public $sortDir='desc';
     public $sortBy='date';
 
     public function with() {
-        return ['expenses'=>Expense::orderBy($this->sortBy, $this->sortDir)->get(), 'total'=> Expense::sum('amount'), 'categories'=>Category::all()];
+        $query = Expense::orderBy($this->sortBy, $this->sortDir);
+        if ($this->search) {
+            $query->where('title', 'like', '%'.$this->search. '%');
+        }
+        return ['expenses'=>$query->get(), 'total'=> $query->sum('amount'), 'categories'=>Category::all()];
     }
 
     public function addExpense() {
@@ -32,7 +38,7 @@ new class extends Component
         $this->reset();
     }
 
-    public function sort($field) {
+    public function sort( string $field) {
         if ($this->sortBy === $field){
             $this->sortDir = $this->sortDir === 'asc' ? 'desc' : 'asc';
         } else {
@@ -42,7 +48,6 @@ new class extends Component
     }
 
     public function delete(Expense $expense){
-        $expense->delete();
-        
+        $expense->delete($expense->id);
     }
 };
