@@ -26,7 +26,7 @@ new class extends Component
     public function with() {
         $query = Expense::orderBy($this->sortBy, $this->sortDir);
         if ($this->search) {
-            $query->where('title', 'ilike', '%'.$this->search. '%');
+            $query->whereLike('title', '%'.$this->search. '%', caseSensitive: false);
         }
         return ['expenses'=>$query->get(), 'total'=> $query->sum('amount'), 'categories'=>Category::all()];
     }
